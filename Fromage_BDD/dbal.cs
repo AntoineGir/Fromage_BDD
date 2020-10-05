@@ -6,7 +6,7 @@ using MySql.Data.MySqlClient;
 
 namespace Fromage_BDD
 {
-    class dbal
+    class dbal: DaoPays
     {
         private MySqlConnection connection;
         private string server;
@@ -125,8 +125,12 @@ namespace Fromage_BDD
             string query = Query;
             OpenConnection();
             MySqlCommand cmd = new MySqlCommand(query, connection);
+
+
             cmd.ExecuteNonQuery();
             CloseConnection();
+
+            
 
         }
     }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Fromage_BDD
 {
@@ -6,10 +8,16 @@ namespace Fromage_BDD
     {
         static void Main(string[] args)
         {
-            dbal db = new dbal();
             
-            
-            db.ExecQuery("INSERT INTO pays (id, nom) VALUES (11, 'savoie' )");
+            DaoPays Pays1 = new DaoPays();
+            DaoFromage Fromage1 = new DaoFromage();
+
+            //Pays1.insert(1, "france");
+            //Pays1.delete(20);
+            //Fromage1.insert(1, 1, "Camenbert", "etc.");
+            //Fromage1.update(1, 1, "Rebloche", "etc.");
+
+            Pays1.update(1, "Haute");
 
         }
     }
