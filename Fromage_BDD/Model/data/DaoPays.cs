@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Fromage_BDD;
-using modele;
-using metier;
+using Model.business;
+using Model.data;
 using System.IO;
 using CsvHelper;
 using System.Globalization;
 
-namespace modele
+namespace Model.data
 {
     class DaoPays
     {

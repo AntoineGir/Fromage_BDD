@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Model.business;
+using Model.data;
 
-namespace Fromage_BDD
+namespace Model.business
 {
     class Fromage
     {

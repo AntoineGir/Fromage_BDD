@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using MySql.Data.MySqlClient;
 using Fromage_BDD;
+using Model.business;
+using Model.data;
 
-namespace modele
+namespace Model.data
 {
     class dbal
     {

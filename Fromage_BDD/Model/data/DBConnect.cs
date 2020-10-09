@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using MySql.Data.MySqlClient;
+using Model.business;
+using Model.data;
 
-namespace Fromage_BDD
+namespace Model.data
 {
     class DBConnect
     {

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using Fromage_BDD;
-using metier;
-using modele;
+using Model.business;
+using Model.data;
 
 namespace Fromage_BDD
 {

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using modele;
+using Model.business;
+using Model.data;
 
-namespace Fromage_BDD
+namespace Model.data
 {
     class DaoFromage
     {
