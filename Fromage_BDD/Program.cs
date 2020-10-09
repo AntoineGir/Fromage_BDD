@@ -31,6 +31,7 @@ namespace Fromage_BDD
 
             DaoPays1.insertfil();
 
+            Console.WriteLine("fin program");
         }
     }
 }
