@@ -1,46 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Fromage_BDD;
+using modele;
+using metier;
 
-namespace Fromage_BDD
+namespace modele
 {
     class DaoPays
     {
-        private int _id;
-        private string _nom;
-
-        public int Id { get => _id; set => _id = value; }
-        public string Nom { get => _nom; set => _nom = value; }
 
 
-        public void insert(int id, string nom)
+        dbal NewDbal = new dbal();
+
+        public DaoPays(dbal mydbal)
         {
-            dbal insert = new dbal();
-            string PaysInsert;
-
-            PaysInsert = ("INSERT INTO pays(id, nom) VALUES(" + id + ", '" + nom + "')");
-
-            insert.Insert(PaysInsert);
+            this.NewDbal = mydbal;
         }
 
-        public void delete(int id)
+        public void insert(Pays pays)
         {
-            dbal delete = new dbal();
-            string PaysDelete;
-            PaysDelete = ("DELETE FROM pays where id = '"+ id + "';");
+            NewDbal.Insert("INSERT INTO pays(id, nom) VALUES(" + pays.Id + ", '" + pays.Nom + "')");
 
-            delete.Delete(PaysDelete);
+            
+        }
+
+        public void delete(Pays pays)
+        {
+            
+            NewDbal.Delete("DELETE FROM pays where id = '"+ pays.Id + "';");
+
+ 
 
         }
 
-        public void update(int id, string nom)
+        public void update(Pays pays)
         {
-            dbal update = new dbal();
-            string PaysUpdate;
-
-            PaysUpdate = ("update pays set id=" + id + ", nom='" + nom + "';");
-            update.Update(PaysUpdate);
-
+            NewDbal.Update("update pays set id=" + pays.Id + ", nom='" + pays.Nom + "';");
         }
 
     }

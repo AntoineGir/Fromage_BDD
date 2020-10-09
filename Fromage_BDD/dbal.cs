@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using MySql.Data.MySqlClient;
+using Fromage_BDD;
 
-
-namespace Fromage_BDD
+namespace modele
 {
-    class dbal: DaoPays
+    class dbal
     {
         private MySqlConnection connection;
         private string server;
@@ -106,6 +106,7 @@ namespace Fromage_BDD
                 //close connection
                 this.CloseConnection();
             }
+
         }
 
         public void Delete(string Query)
@@ -115,8 +116,12 @@ namespace Fromage_BDD
             if (this.OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(query, connection);
+                
+                //pouvoir mettre un cas d'erreur 
                 cmd.ExecuteNonQuery();
                 this.CloseConnection();
+
+
             }
         }
 
@@ -130,7 +135,7 @@ namespace Fromage_BDD
             cmd.ExecuteNonQuery();
             CloseConnection();
 
-            
+
 
         }
     }

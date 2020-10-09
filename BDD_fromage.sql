@@ -12,10 +12,11 @@ primary key (id)
 id int,
 pays_origine_id int,
 nom varchar(75),
-creation  date,
+creation  int,
 image varchar(255),
 primary key (id),
 foreign key(pays_origine_id) References pays(id)
 )Engine Innodb;
 
 select * from pays;
+select * from fromage;

@@ -1,51 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using modele;
 
 namespace Fromage_BDD
 {
     class DaoFromage
     {
-        private int _id;
-        private int pays_origine_id;
-        private string _nom;
-        //private DateTime _creation;
-        private string _image;
 
-        public int Id { get => _id; set => _id = value; }
-        public int Pays_origine_id { get => pays_origine_id; set => pays_origine_id = value; }
-        public string Nom { get => _nom; set => _nom = value; }
-        //public DateTime Creation { get => _creation; set => _creation = value; }
-        public string Image { get => _image; set => _image = value; }
+        dbal NewDbal = new dbal();
 
-        public void insert(int id, int pays_origine_id, string nom, string image)
+        public DaoFromage(dbal mydbal)
         {
-            dbal insert = new dbal();
-            string FromageInsert;
-
-            FromageInsert = ("INSERT INTO fromage(id,pays_origine_id, nom, image ) VALUES(" + id + "," + pays_origine_id +
-                ",'" + nom + "','" + image + "')");
-
-            insert.Insert(FromageInsert);
+            this.NewDbal = mydbal;
         }
 
-        public void delete(int id)
+
+        public void insert(Fromage fromage)
         {
-            dbal delete = new dbal();
-            string FromageDelete;
-
-            FromageDelete = ("DELETE FROM fromage where id = '" + id + "';");
-
-            delete.Delete(FromageDelete);
+            NewDbal.Insert("INSERT INTO fromage(id,pays_origine_id,nom, creation, image ) VALUES(" + fromage.Id + "," + fromage.Pays_origine_id +
+                ",'" + fromage.Nom + "','" + fromage.Creation + "','" + fromage.Image + "')");
         }
 
-        public void update(int id, int pays_origine_id, string nom, string image)
+        public void delete(Fromage fromage)
         {
-            dbal update = new dbal();
-            string FromageUpdate;
 
-            FromageUpdate =("update fromage set id=" + id + ", pays_origine_id=" + pays_origine_id + ",nom='" + nom + "',image='" + image + "';");
+            NewDbal.Delete("DELETE FROM fromage where id = '" + fromage.Id + "';");
+        }
 
+        public void update(Fromage fromage)
+        {
+            NewDbal.Update("update fromage set id=" + fromage.Id + ",pays_origine_id=" + fromage.Pays_origine_id + ",nom='" + fromage.Nom + "',creation=" + fromage.Creation + ",image='" + fromage.Image + "' where id=" + fromage.Id + ";");
         }
     }
 }

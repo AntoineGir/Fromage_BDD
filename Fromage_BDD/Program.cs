@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using Fromage_BDD;
+using metier;
+using modele;
 
 namespace Fromage_BDD
 {
@@ -8,16 +12,24 @@ namespace Fromage_BDD
     {
         static void Main(string[] args)
         {
+           
+            dbal NewDBal = new dbal();
+            Pays pays1 = new Pays(1, "france");
+            DaoPays DaoPays1 = new DaoPays(NewDBal);
+            //DaoPays1.delete(pays1);
+
+            //DaoPays1.insert(pays1);
+            DaoPays1.update(pays1);
+            Fromage Fromage1 = new Fromage(1, 1, "Camenbert", 12, "cc");
+            DaoFromage DaoFromage1 = new DaoFromage(NewDBal);
+            //DaoFromage1.update(Fromage1);
+
+            DaoFromage1.update(Fromage1);
+            Console.WriteLine("test");
+            DaoPays1.update(pays1);
+            //DaoPays1.update(pays1);
+
             
-            DaoPays Pays1 = new DaoPays();
-            DaoFromage Fromage1 = new DaoFromage();
-
-            //Pays1.insert(1, "france");
-            //Pays1.delete(20);
-            //Fromage1.insert(1, 1, "Camenbert", "etc.");
-            //Fromage1.update(1, 1, "Rebloche", "etc.");
-
-            Pays1.update(1, "Haute");
 
         }
     }
