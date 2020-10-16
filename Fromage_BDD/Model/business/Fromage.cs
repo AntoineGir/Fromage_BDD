@@ -22,6 +22,14 @@ namespace Model.business
             this.creation = creation;
             this.image = image;
         }
+        public Fromage()
+        {
+            this.id = 0 ;
+            this.pays_origine_id = 0;
+            this.nom = " . " ;
+            this.creation = 0;
+            this.image =" . " ;
+        }
 
         public int Id { get => id; set => id = value; }
         public int Pays_origine_id { get => pays_origine_id; set => pays_origine_id = value; }

@@ -7,6 +7,7 @@ using Model.data;
 using System.IO;
 using CsvHelper;
 using System.Globalization;
+using System.Data;
 
 namespace Model.data
 {
@@ -24,17 +25,11 @@ namespace Model.data
         public void insert(Pays pays)
         {
             NewDbal.Insert("INSERT INTO pays(id, nom) VALUES(" + pays.Id + ", '" + pays.Nom.Replace("'", "''") + "')");
-
-
         }
 
         public void delete(Pays pays)
         {
-
             NewDbal.Delete("DELETE FROM pays where id = '" + pays.Id + "';");
-
-
-
         }
 
         public void update(Pays pays)
@@ -56,9 +51,45 @@ namespace Model.data
                 {
                     insert(r);
                 }
+
             }
         }
-        
 
+        public List<Pays> selectAll()
+        {
+            List<Pays> listPays = new List<Pays>();
+
+            foreach (DataRow r in NewDbal.SelectAll("Pays").Rows)
+            {
+                listPays.Add(new Pays((int)r["id"], (string)r["nom"]));
+            }
+
+
+            foreach (Pays x in listPays)
+            {
+                Console.WriteLine(x.Id);
+            }
+            return listPays;
+        }
+        
+        public Pays SelectByName(string namePays)
+        {
+            DataRow r = NewDbal.SelectByField("pays", " nom LIKE '" + namePays + "'").Rows[0];
+            Pays pays1 = new Pays((int)r["id"], (string)r["nom"]);
+            Console.WriteLine(pays1.Id);
+
+            return pays1;
+        }
+        
+        public Pays SelectById(int idPays)
+        {
+            DataRow r = NewDbal.SelectByld("Pays", idPays);
+            Pays pays1 = new Pays((int)r["id"], (string)r["nom"]);
+            Console.WriteLine(pays1.Nom);
+
+            return pays1;
+        }
+        
+        
     }
 }

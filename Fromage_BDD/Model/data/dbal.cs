@@ -5,6 +5,8 @@ using MySql.Data.MySqlClient;
 using Fromage_BDD;
 using Model.business;
 using Model.data;
+using System.Linq;
+using System.Data;
 
 namespace Model.data
 {
@@ -136,9 +138,54 @@ namespace Model.data
 
             cmd.ExecuteNonQuery();
             CloseConnection();
-
-
-
         }
+
+
+
+
+        public DataSet RQuery(string query)
+        {
+            DataSet mydataset = new DataSet();
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            adapter.SelectCommand = new MySqlCommand(query, connection);
+            
+            adapter.Fill(mydataset);
+
+            return mydataset;
+        }
+
+        public DataTable SelectAll(string table)
+        {
+            return this.RQuery("select * from " + table).Tables[0];
+        }
+        
+        public DataTable SelectByField(string table, string fieldTestCondition)
+        {
+            return this.RQuery("select * from " + table + " where" + fieldTestCondition).Tables[0];
+        }
+
+
+        
+        public DataRow SelectByld(string table,int id)
+        {
+            return this.RQuery("select * from " + table + " where id=" + id).Tables[0].Rows[0];
+        }
+        
+
+
+       /* 
+        public void test(string query)
+        {
+            
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            adapter.SelectCommand = new MySqlCommand(query, connection);
+            adapter.Fill(dataset);
+
+            ExecQuery(query);
+        
+        }
+       */
+
+
     }
 }
